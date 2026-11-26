@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ShrinkagePlanner - WFM Shrinkage and Capacity Planner</title>
+<meta name="description" content="ShrinkagePlanner turns a shrinkage plan (PTO, sick, training, meetings, absenteeism) into net staffing hours and flags weeks that miss coverage. Demo with fictional data only.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <h1>ShrinkagePlanner</h1>
+  <p class="tagline">From shrinkage plan to net staffing, week by week.</p>
+  <p class="demo-note">Demo with a fictional team and plan - not from any real employer or person.</p>
+</header>
+
+<main>
+  <section class="scoreboard" aria-label="Plan summary">
+    <div class="score">
+      <span class="score-value" id="avgShrink">-</span>
+      <span class="score-label">average shrinkage (6 weeks)</span>
+    </div>
+    <div class="score">
+      <span class="score-value" id="worstWeek">-</span>
+      <span class="score-label">highest shrinkage week</span>
+    </div>
+    <div class="score">
+      <span class="score-value" id="overCeiling">-</span>
+      <span class="score-label">weeks over the 30% ceiling</span>
+    </div>
+    <div class="score">
+      <span class="score-value" id="shortWeeks">-</span>
+      <span class="score-label">weeks below required coverage</span>
+    </div>
+  </section>
+
+  <section class="card" aria-label="Weekly capacity chart">
+    <h2>Weekly capacity: gross, shrunk, net</h2>
+    <div id="legend" class="legend"></div>
+    <svg id="stackChart" role="img" aria-label="Weekly gross, shrinkage and net staffing hours against the required coverage line"></svg>
+    <p class="hint">Each bar is the week's gross hours. The grey base is what remains available (net) after shrinkage; colored segments are planned shrinkage by category. The dashed line is required coverage.</p>
+  </section>
+
+  <section class="card" aria-label="Shrinkage by category">
+    <h2>Where the hours go</h2>
+    <table id="catTable">
+      <thead><tr><th>Category</th><th>Hours (6 wks)</th><th>Share of shrinkage</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </section>
+</main>
+
+<footer>
+  <p>ShrinkagePlanner demo. Team, plan, and requirements are fictional. See the README for model limitations.</p>
+</footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
